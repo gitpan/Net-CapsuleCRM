@@ -1,0 +1,49 @@
+{
+   "abstract" : "Connect to the Capsule API (www.capsulecrm.com)",
+   "author" : [
+      "Simon Elliott <cpan@papercreatures.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300001, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Net-CapsuleCRM",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "HTTP::Request::Common" : 0,
+            "JSON::XS" : 0,
+            "Method::Signatures" : 0,
+            "Moo" : 0,
+            "Sub::Quote" : 0,
+            "XML::Simple" : 0,
+            "strict" : 0,
+            "warnings" : 0
+         }
+      }
+   },
+   "release_status" : "testing",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=Net-CapsuleCRM"
+      },
+      "homepage" : "https://github.com/purge/Net-CapsuleCRM/wiki",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/purge/Net-CapsuleCRM.git",
+         "web" : "https://github.com/purge/Net-CapsuleCRM"
+      }
+   },
+   "version" : "1.112630"
+}
+
