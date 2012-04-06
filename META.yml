@@ -2,11 +2,12 @@
 abstract: 'Connect to the Capsule API (www.capsulecrm.com)'
 author:
   - 'Simon Elliott <cpan@papercreatures.com>'
-build_requires: {}
+build_requires:
+  Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300001, CPAN::Meta::Converter version 2.112150'
+generated_by: 'Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -25,4 +26,4 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Net-CapsuleCRM
   homepage: https://github.com/purge/Net-CapsuleCRM/wiki
   repository: git://github.com/purge/Net-CapsuleCRM.git
-version: 1.112630
+version: 1.120970

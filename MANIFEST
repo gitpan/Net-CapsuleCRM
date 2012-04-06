@@ -5,3 +5,4 @@ META.yml
 Makefile.PL
 README
 lib/Net/CapsuleCRM.pm
+t/01_use.t

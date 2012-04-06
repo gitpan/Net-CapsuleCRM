@@ -11,7 +11,9 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Connect to the Capsule API (www.capsulecrm.com)",
   "AUTHOR" => "Simon Elliott <cpan\@papercreatures.com>",
-  "BUILD_REQUIRES" => {},
+  "BUILD_REQUIRES" => {
+    "Test::More" => 0
+  },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -29,9 +31,9 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "1.112630",
+  "VERSION" => "1.120970",
   "test" => {
-    "TESTS" => ""
+    "TESTS" => "t/*.t"
   }
 );
 

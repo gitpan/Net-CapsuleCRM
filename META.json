@@ -4,7 +4,7 @@
       "Simon Elliott <cpan@papercreatures.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300001, CPAN::Meta::Converter version 2.112150",
+   "generated_by" : "Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640",
    "license" : [
       "perl_5"
    ],
@@ -30,9 +30,14 @@
             "strict" : 0,
             "warnings" : 0
          }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : 0
+         }
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
          "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=Net-CapsuleCRM"
@@ -44,6 +49,6 @@
          "web" : "https://github.com/purge/Net-CapsuleCRM"
       }
    },
-   "version" : "1.112630"
+   "version" : "1.120970"
 }
 

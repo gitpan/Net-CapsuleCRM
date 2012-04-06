@@ -1,6 +1,6 @@
 package Net::CapsuleCRM;
 {
-  $Net::CapsuleCRM::VERSION = '1.112630'; # TRIAL
+  $Net::CapsuleCRM::VERSION = '1.120970';
 }
 
 use strict;
@@ -20,7 +20,7 @@ has 'error' => (is => 'rw', predicate => 'has_error');
 has 'token' => (is => 'rw', required => 1);
 has 'ua' => (is => 'rw', 
   default => sub { LWP::UserAgent->new( agent => 'Perl Net-CapsuleCRM'); } );
-has 'target_domain' => (is => 'rw', default => 'test.capsulecrm.com')
+has 'target_domain' => (is => 'rw', default => 'test.capsulecrm.com');
 has 'xmls' => ( is => 'rw', default => sub { return XML::Simple->new(
   NoAttr => 1, KeyAttr => [], XMLDecl => 1, SuppressEmpty => 1, ); }
 );
@@ -38,6 +38,7 @@ method _talk($command,$method,$content?) {
   );
   
   print "$uri\n" if $self->debug;
+
   my $res;
   my $type = ref $content  eq 'HASH' ? 'json' : 'xml';
   if($method =~ /get/i){
@@ -53,18 +54,26 @@ method _talk($command,$method,$content?) {
     #$content = $self->_template($content) if $content;
     if($type eq 'json') {
       print "Encoding as JSON\n" if $self->debug;
-      $content = $self->xmls->XMLout($content, RootName => $command);
+      $content = encode_json $content;
+      print "$content\n" if $self->debug;
+      $res = $self->ua->request(
+        POST $uri,
+        Accept => 'application/json', 
+        Content_Type => 'application/json',
+        Content => $content,
+      );
     } else {
       #otherwise XML
+      $content = $self->xmls->XMLout($content, RootName => $command);
       print "Encoding as XML\n" if $self->debug;
+      $res = $self->ua->request(
+        POST $uri,
+        Accept => 'text/xml', 
+        Content_Type => 'text/xml',
+        Content => $content,
+      );
     }
 
-    $res = $self->ua->request(
-      POST $uri,
-      Accept => 'text/xml', 
-      Content_Type => 'text/xml',
-      Content => $content,
-    );
 
   }
   
@@ -73,6 +82,7 @@ method _talk($command,$method,$content?) {
     if($res->status_line =~ /^201/) {
       return (split '/', $res->header('Location'))[-1]
     } else {
+      print $res->content. "\n" if $self->debug;
       if($type eq 'json') {
         return decode_json $res->content;
       } elsif($res->content) {
@@ -84,6 +94,9 @@ method _talk($command,$method,$content?) {
   } else {
     $self->error($res->status_line);
     warn $self->error;
+    if ($self->debug) {
+      print $res->content;
+    }
   }
   
 }
@@ -105,9 +118,8 @@ method find_party($id) {
 }
 
 
-
 method create_person($data) {
-  return $self->_talk('person', 'POST', $data);
+  return $self->_talk('person', 'POST', { person => $data } );
 }
 
 
@@ -136,7 +148,7 @@ Net::CapsuleCRM - Connect to the Capsule API (www.capsulecrm.com)
 
 =head1 VERSION
 
-version 1.112630
+version 1.120970
 
 =head1 SYNOPSIS
 
