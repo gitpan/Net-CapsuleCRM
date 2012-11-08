@@ -2,7 +2,7 @@ NAME
     Net::CapsuleCRM - Connect to the Capsule API (www.capsulecrm.com)
 
 VERSION
-    version 1.120970
+    version 1.123130
 
 SYNOPSIS
     my $foo = Net::CapsuleCRM->new( token => 'xxxx', target_domain =>

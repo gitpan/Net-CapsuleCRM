@@ -1,6 +1,6 @@
 package Net::CapsuleCRM;
 {
-  $Net::CapsuleCRM::VERSION = '1.120970';
+  $Net::CapsuleCRM::VERSION = '1.123130';
 }
 
 use strict;
@@ -9,6 +9,7 @@ use Moo;
 use Sub::Quote;
 use Method::Signatures;
 use JSON::XS;
+use LWP::UserAgent;
 use HTTP::Request::Common;
 use XML::Simple;
 
@@ -20,7 +21,7 @@ has 'error' => (is => 'rw', predicate => 'has_error');
 has 'token' => (is => 'rw', required => 1);
 has 'ua' => (is => 'rw', 
   default => sub { LWP::UserAgent->new( agent => 'Perl Net-CapsuleCRM'); } );
-has 'target_domain' => (is => 'rw', default => 'test.capsulecrm.com');
+has 'target_domain' => (is => 'rw', default => sub { 'test.capsulecrm.com' } );
 has 'xmls' => ( is => 'rw', default => sub { return XML::Simple->new(
   NoAttr => 1, KeyAttr => [], XMLDecl => 1, SuppressEmpty => 1, ); }
 );
@@ -124,7 +125,7 @@ method create_person($data) {
 
 
 method create_organisation($data) {
-  return $self->_talk('organisation', 'POST', $data);
+  return $self->_talk('organisation', 'POST', { organisation => $data } );
 }
 
 method add_tag($id, @tags) {
@@ -148,7 +149,7 @@ Net::CapsuleCRM - Connect to the Capsule API (www.capsulecrm.com)
 
 =head1 VERSION
 
-version 1.120970
+version 1.123130
 
 =head1 SYNOPSIS
 

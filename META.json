@@ -23,6 +23,7 @@
          "requires" : {
             "HTTP::Request::Common" : 0,
             "JSON::XS" : 0,
+            "LWP::UserAgent" : 0,
             "Method::Signatures" : 0,
             "Moo" : 0,
             "Sub::Quote" : 0,
@@ -49,6 +50,6 @@
          "web" : "https://github.com/purge/Net-CapsuleCRM"
       }
    },
-   "version" : "1.120970"
+   "version" : "1.123130"
 }
 
